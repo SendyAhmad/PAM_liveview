@@ -9,13 +9,18 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 
 
 class MainActivity : AppCompatActivity() {
     private var mCount = 0
+
+    private val model: NameViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,10 +32,20 @@ class MainActivity : AppCompatActivity() {
         val buttonSwitchPage = findViewById<Button>(R.id.button_pindah)
         val buttonBrowser = findViewById<Button>(R.id.button_browser)
 
+        // Create the observer which updates the UI.
+        val nameObserver = Observer<Int> { newName ->
+            // Update the UI, in this case, a TextView.
+            mShowCount.text = newName.toString()
+        }
+
+        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
+        model.currentName.observe(this, nameObserver)
+
         buttonCountUp.setOnClickListener(View.OnClickListener {
             mCount = mCount + 1
             if (mShowCount != null)
-                mShowCount.text = mCount.toString()
+                //mShowCount.text = mCount.toString()
+                model.currentName.setValue(mCount)
         })
 
         buttonToast.setOnClickListener(View.OnClickListener {
@@ -49,6 +64,11 @@ class MainActivity : AppCompatActivity() {
             val intentbrowse = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivity(intentbrowse)
         })
+
+//       button.setOnClickListener {
+//          val anotherName = "John Doe"
+//          model.currentName.setValue(anotherName)
+//}
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
