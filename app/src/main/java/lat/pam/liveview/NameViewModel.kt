@@ -1,4 +1,4 @@
-package lat.pam.hellotoastjumat
+package lat.pam.liveview
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

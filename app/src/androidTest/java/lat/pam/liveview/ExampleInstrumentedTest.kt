@@ -1,4 +1,4 @@
-package lat.pam.hellotoastjumat
+package lat.pam.liveview
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

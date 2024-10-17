@@ -1,4 +1,4 @@
-package lat.pam.hellotoastjumat
+package lat.pam.liveview
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

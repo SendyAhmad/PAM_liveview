@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "lat.pam.hellotoastjumat"
+    namespace = "lat.pam.liveview"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "lat.pam.hellotoastjumat"
+        applicationId = "lat.pam.liveview"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
